@@ -1,42 +1,45 @@
-// Menú móvil
+// Navegación móvil
 const navToggle = document.getElementById('nav-toggle');
-const mainNav = document.getElementById('main-nav');
+const nav = document.getElementById('nav');
 
-if (navToggle && mainNav) {
+if (navToggle && nav) {
     navToggle.addEventListener('click', () => {
-        mainNav.classList.toggle('open');
+        nav.classList.toggle('open');
     });
 
-    mainNav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => mainNav.classList.remove('open'));
+    // Cerrar menú al hacer click en un enlace
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => nav.classList.remove('open'));
     });
 }
 
-// Año dinámico
+// Año dinámico en el footer
 const yearSpan = document.getElementById('year');
 if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
 }
 
-// URL de WhatsApp (cambiás el número acá una sola vez)
+// URL de WhatsApp (podés cambiar el número acá una sola vez)
 const WHATSAPP_URL = "https://wa.me/5491141999497?text=Hola,%20quiero%20hacer%20una%20consulta%20legal";
 
-const btnWhatsappHero = document.getElementById('btn-whatsapp-hero');
-const btnWhatsappSide = document.getElementById('btn-whatsapp-side');
+const heroWhatsapp = document.getElementById('hero-whatsapp');
+const contactWhatsapp = document.getElementById('contact-whatsapp');
 
-if (btnWhatsappHero) {
-    btnWhatsappHero.addEventListener('click', () => {
+if (heroWhatsapp) {
+    heroWhatsapp.addEventListener('click', (e) => {
+        e.preventDefault();
         window.open(WHATSAPP_URL, '_blank');
     });
 }
 
-if (btnWhatsappSide) {
-    btnWhatsappSide.addEventListener('click', () => {
+if (contactWhatsapp) {
+    contactWhatsapp.addEventListener('click', (e) => {
+        e.preventDefault();
         window.open(WHATSAPP_URL, '_blank');
     });
 }
 
-// Animación reveal en secciones
+// Animación simple de aparición al hacer scroll
 const observer = new IntersectionObserver(
     (entries) => {
         entries.forEach(entry => {
@@ -51,18 +54,18 @@ const observer = new IntersectionObserver(
     }
 );
 
-document.querySelectorAll('.section, .hero-alt, .strip-images').forEach(el => {
+// Aplica .reveal a secciones
+document.querySelectorAll('.section, .hero').forEach(el => {
     el.classList.add('reveal');
     observer.observe(el);
 });
 
-// Manejo simple del formulario (demo)
-const formConsulta = document.getElementById('form-consulta');
-
-if (formConsulta) {
-    formConsulta.addEventListener('submit', (e) => {
+// Previene envío real del formulario (demo)
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         alert('Tu consulta fue enviada. Nos pondremos en contacto a la brevedad.');
-        formConsulta.reset();
+        contactForm.reset();
     });
 }
