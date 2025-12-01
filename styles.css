@@ -766,29 +766,32 @@ body {
         display: flex;
     }
 
-    /* El header es contenedor del menú */
+    /* El header es el contenedor del menú */
     .header-inner {
         padding: 0.6rem 0;
         position: relative;
     }
 
-    /* Menú mobile: dropdown debajo del encabezado */
+    /* MENÚ MOBILE: debajo del header, entra de IZQ → DER */
     .main-nav {
         position: absolute;
-        top: 100%;
+        top: 100%;              /* justo debajo del encabezado */
         left: 0;
-        right: 0;
         width: 100%;
         background: var(--bg-light);
         border-bottom: 1px solid var(--border-soft);
         box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
-        transform: translateY(-120%);
+        transform: translateX(-100%);    /* escondido a la IZQ */
         transition: transform 0.25s ease;
         z-index: 40;
+        opacity: 0;
+        pointer-events: none;           /* que no se pueda clickear cerrado */
     }
 
     .main-nav.open {
-        transform: translateY(0);
+        transform: translateX(0);       /* entra de IZQ → DER */
+        opacity: 1;
+        pointer-events: auto;
     }
 
     .main-nav ul {
@@ -805,7 +808,7 @@ body {
         transform: translateX(-20px);
     }
 
-    /* Al abrir: izquierda → derecha */
+    /* Al abrir: arrastre IZQ → DER */
     .main-nav.open ul li {
         opacity: 1;
         transform: translateX(0);
@@ -818,7 +821,7 @@ body {
     .main-nav.open ul li:nth-child(4) { transition-delay: 0.18s; }
     .main-nav.open ul li:nth-child(5) { transition-delay: 0.23s; }
 
-    /* Al cerrar: derecha → izquierda */
+    /* Al cerrar: letras DER → IZQ */
     .main-nav.closing ul li {
         opacity: 0;
         transform: translateX(20px);
@@ -839,3 +842,4 @@ body {
         grid-template-columns: minmax(0, 1fr);
     }
 }
+
