@@ -712,18 +712,15 @@ body {
     box-shadow: 0 22px 46px rgba(22, 163, 74, 0.85);
 }
 
-/* Animación reveal (segura: si JS no carga, el contenido igual se ve) */
+/* Animación reveal (más rápida y se dispara antes) */
 
 .reveal {
+    opacity: 0;
+    transform: translateY(6px);
     transition: opacity 0.25s ease-out, transform 0.25s ease-out;
 }
 
-.js .reveal {
-    opacity: 0;
-    transform: translateY(6px);
-}
-
-.js .reveal.is-visible {
+.reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
 }
@@ -769,32 +766,29 @@ body {
         display: flex;
     }
 
-    /* El header es el contenedor del menú */
+    /* El header es contenedor del menú */
     .header-inner {
         padding: 0.6rem 0;
         position: relative;
     }
 
-    /* MENÚ MOBILE: debajo del header, entra de IZQ → DER */
+    /* Menú mobile: dropdown debajo del encabezado */
     .main-nav {
         position: absolute;
-        top: 100%;              /* justo debajo del encabezado */
+        top: 100%;
         left: 0;
+        right: 0;
         width: 100%;
         background: var(--bg-light);
         border-bottom: 1px solid var(--border-soft);
         box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
-        transform: translateX(-100%);    /* escondido a la IZQ */
+        transform: translateY(-120%);
         transition: transform 0.25s ease;
         z-index: 40;
-        opacity: 0;
-        pointer-events: none;           /* que no se pueda clickear cerrado */
     }
 
     .main-nav.open {
-        transform: translateX(0);       /* entra de IZQ → DER */
-        opacity: 1;
-        pointer-events: auto;
+        transform: translateY(0);
     }
 
     .main-nav ul {
@@ -811,7 +805,7 @@ body {
         transform: translateX(-20px);
     }
 
-    /* Al abrir: arrastre IZQ → DER */
+    /* Al abrir: izquierda → derecha */
     .main-nav.open ul li {
         opacity: 1;
         transform: translateX(0);
@@ -824,7 +818,7 @@ body {
     .main-nav.open ul li:nth-child(4) { transition-delay: 0.18s; }
     .main-nav.open ul li:nth-child(5) { transition-delay: 0.23s; }
 
-    /* Al cerrar: letras DER → IZQ */
+    /* Al cerrar: derecha → izquierda */
     .main-nav.closing ul li {
         opacity: 0;
         transform: translateX(20px);

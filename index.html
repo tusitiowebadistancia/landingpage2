@@ -28,15 +28,8 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    <!-- CSS (RUTA RELATIVA + VERSIÓN) -->
-    <link rel="stylesheet"
-          href="styles.css?v=4"
-          media="print"
-          onload="this.media='all'">
-
-    <noscript>
-        <link rel="stylesheet" href="styles.css?v=4">
-    </noscript>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css?v=1.0" />
 
     <!-- Schema JSON-LD -->
     <script type="application/ld+json">
@@ -431,29 +424,7 @@
         <i class="fa-solid fa-phone"></i>
     </a>
 
-    <!-- JS (RUTA RELATIVA + VERSIÓN + FALLBACK) -->
-    <script>
-        // Marcador para saber si el script principal se cargó
-        window.__MAIN_JS_LOADED__ = false;
-    </script>
-
-    <script src="script.js?v=4" defer
-            onload="window.__MAIN_JS_LOADED__ = true;">
-    </script>
-
-    <script>
-        // Fallback: si por alguna razón el script anterior no carga,
-        // intentamos de nuevo con la misma ruta relativa
-        window.addEventListener('DOMContentLoaded', function () {
-            setTimeout(function () {
-                if (!window.__MAIN_JS_LOADED__) {
-                    var s = document.createElement('script');
-                    s.src = 'script.js?v=4';
-                    document.body.appendChild(s);
-                }
-            }, 500);
-        });
-    </script>
-
+    <!-- JS -->
+    <script src="script.js?v=1.0" defer></script>
 </body>
 </html>

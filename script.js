@@ -1,6 +1,3 @@
-// Marcamos que JS está activo para las animaciones .reveal
-document.documentElement.classList.add('js');
-
 // Menú móvil con animación de apertura/cierre
 const navToggle = document.getElementById('nav-toggle');
 const mainNav = document.getElementById('main-nav');
@@ -20,7 +17,7 @@ function closeNav() {
     // Animamos letras de derecha → izquierda
     mainNav.classList.add('closing');
 
-    // Un poquito después, cerramos el panel
+    // Un poquito después, deslizamos el panel hacia arriba
     setTimeout(() => {
         mainNav.classList.remove('open');
     }, 220);
