@@ -9,7 +9,7 @@
     <meta name="keywords" content="abogado, estudio jurídico, abogado laboral, abogado civil, abogado familia, asesoría legal, abogado online, abogado a distancia" />
     <meta name="robots" content="index, follow" />
 
-    <!-- IMPORTANTE: SIN ZOOM -->
+    <!-- SIN ZOOM -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <!-- Open Graph -->
@@ -24,25 +24,12 @@
     <!-- FUENTE -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-    <!-- ICONOS (Font Awesome para WhatsApp y redes) -->
+    <!-- ICONOS (Font Awesome) -->
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkTt108m3WZyGqVZkqT9VQ4Gd0C2uD56nL7p6R8V2KyZ7r3lr5l8v4Ykg=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer" />
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <!-- CSS -->
-    <!-- CSS PRINCIPAL (con versión y doble ruta) -->
-<link rel="stylesheet"
-      href="/styles.css?v=1.0"
-      media="print"
-      onload="this.media='all'">
-
-<noscript>
-    <!-- Fallback extra por si algo raro pasa con JS desactivado -->
-    <link rel="stylesheet" href="/styles.css?v=1.0">
-</noscript>
-
+    <link rel="stylesheet" href="styles.css?v=1.0" />
 
     <!-- Schema JSON-LD -->
     <script type="application/ld+json">
@@ -107,7 +94,7 @@
         </div>
     </header>
 
-    <!-- HERO DIFERENTE (IMAGEN GRANDE IZQUIERDA + TEXTO DERECHA) -->
+    <!-- HERO (IMAGEN IZQUIERDA + TEXTO DERECHA) -->
     <section class="hero-alt" id="hero">
         <div class="container hero-alt-grid">
             <div class="hero-alt-image-block">
@@ -145,7 +132,7 @@
         </div>
     </section>
 
-    <!-- TIRA DE IMÁGENES (GALERÍA DE CONFIANZA) -->
+    <!-- TIRA DE IMÁGENES -->
     <section class="strip-images">
         <div class="container strip-grid">
             <figure>
@@ -167,7 +154,7 @@
         </div>
     </section>
 
-    <!-- ÁREAS DE PRÁCTICA (SECCIÓN EN BLOQUES CON IMÁGENES LATERALES) -->
+    <!-- ÁREAS DE PRÁCTICA -->
     <section id="areas" class="section section-light">
         <div class="container">
             <div class="section-heading">
@@ -249,7 +236,7 @@
         </div>
     </section>
 
-    <!-- VIDEO DE PRESENTACIÓN EN FAJA GRIS -->
+    <!-- VIDEO DE PRESENTACIÓN -->
     <section id="galeria" class="section section-gray">
         <div class="container video-layout">
             <div class="video-text">
@@ -276,7 +263,7 @@
         </div>
     </section>
 
-    <!-- TESTIMONIOS + LOGOS / SELLOS -->
+    <!-- TESTIMONIOS -->
     <section id="clientes" class="section section-light">
         <div class="container">
             <div class="section-heading center">
@@ -319,7 +306,7 @@
         </div>
     </section>
 
-    <!-- BLOQUE DE PASOS (EN COLUMNA LATERAL) + CONTACTO -->
+    <!-- CONTACTO -->
     <section id="contacto" class="section section-gray">
         <div class="container contact-layout">
             <div class="steps-column">
@@ -429,40 +416,15 @@
         </div>
     </footer>
 
-    <!-- BOTÓN FLOTANTE WHATSAPP CON ÍCONO -->
+    <!-- BOTÓN FLOTANTE TELÉFONO -->
     <a
-        href="https://wa.me/5491141999497?text=Hola,%20quiero%20hacer%20una%20consulta%20legal"
+        href="tel:+5491141999497"
         class="whatsapp-float"
-        target="_blank"
-        rel="noopener"
-        aria-label="Abrir chat de WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
+        aria-label="Llamar por teléfono">
+        <i class="fa-solid fa-phone"></i>
     </a>
 
     <!-- JS -->
-    <!-- SCRIPT PRINCIPAL (con versión y ruta absoluta) -->
-<script>
-    // Marcador para saber si el script principal se cargó
-    window.__MAIN_JS_LOADED__ = false;
-</script>
-
-<script src="/script.js?v=1.0" defer
-        onload="window.__MAIN_JS_LOADED__ = true;">
-</script>
-
-<script>
-    // Fallback: si por alguna razón el script anterior no carga,
-    // intentamos de nuevo con ruta relativa.
-    window.addEventListener('DOMContentLoaded', function () {
-        setTimeout(function () {
-            if (!window.__MAIN_JS_LOADED__) {
-                var s = document.createElement('script');
-                s.src = 'script.js?v=1.0';
-                document.body.appendChild(s);
-            }
-        }, 500); // esperamos medio segundo a que intente cargar el primero
-    });
-</script>
-
+    <script src="script.js?v=1.0" defer></script>
 </body>
 </html>

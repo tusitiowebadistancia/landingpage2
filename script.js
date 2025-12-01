@@ -14,15 +14,14 @@ function openNav() {
 function closeNav() {
     if (!mainNav || !navIsOpen) return;
 
-    // Primero animamos letras de derecha → izquierda
+    // Animamos letras de derecha → izquierda
     mainNav.classList.add('closing');
 
-    // Después de un pequeño tiempo, hacemos que el panel se deslice hacia la izquierda
+    // Un poquito después, deslizamos el panel hacia arriba
     setTimeout(() => {
         mainNav.classList.remove('open');
-    }, 220); // debe matchear con el tiempo de transición de las letras
+    }, 220);
 
-    // Quitamos la clase closing al final de la animación
     setTimeout(() => {
         mainNav.classList.remove('closing');
     }, 450);
@@ -71,7 +70,7 @@ if (btnWhatsappSide) {
     });
 }
 
-// Animación reveal en secciones
+// Animación reveal en secciones (más rápida y se dispara antes)
 const observer = new IntersectionObserver(
     (entries) => {
         entries.forEach(entry => {
@@ -82,10 +81,12 @@ const observer = new IntersectionObserver(
         });
     },
     {
-        threshold: 0.15
+        threshold: 0.08,             // se dispara antes
+        rootMargin: '0px 0px -10% 0px'
     }
 );
 
+// Aplicar reveal a secciones
 document.querySelectorAll('.section, .hero-alt, .strip-images').forEach(el => {
     el.classList.add('reveal');
     observer.observe(el);
