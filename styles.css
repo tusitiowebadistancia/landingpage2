@@ -851,3 +851,11 @@ body {
         grid-template-columns: minmax(0, 1fr);
     }
 }
+
+/* Ajuste fino: menú mobile debajo del SEGUNDO encabezado */
+@media (max-width: 720px) {
+    .main-nav {
+        top: 96px; /* debajo de topbar + header.
+                     Si ves que queda muy arriba/abajo, probá con 90px o 100px */
+    }
+}
