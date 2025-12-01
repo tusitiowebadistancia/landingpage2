@@ -102,3 +102,13 @@ if (formConsulta) {
         formConsulta.reset();
     });
 }
+
+navToggle.addEventListener('click', () => {
+    actualizarAlturaMenuMobile();  // recalcula antes de abrir/cerrar
+
+    if (!navIsOpen) {
+        openNav();
+    } else {
+        closeNav();
+    }
+});

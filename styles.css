@@ -859,3 +859,9 @@ body {
                      Si ves que queda muy arriba/abajo, probá con 90px o 100px */
     }
 }
+/* Ajuste fino: posición vertical del menú mobile controlada por variable CSS */
+@media (max-width: 720px) {
+    .main-nav {
+        top: var(--nav-top-mobile, 96px); /* valor de respaldo por si JS no corre */
+    }
+}
