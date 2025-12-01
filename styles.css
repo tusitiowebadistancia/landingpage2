@@ -712,15 +712,18 @@ body {
     box-shadow: 0 22px 46px rgba(22, 163, 74, 0.85);
 }
 
-/* Animación reveal (más rápida y se dispara antes) */
+/* Animación reveal (segura: si JS no carga, el contenido igual se ve) */
 
 .reveal {
-    opacity: 0;
-    transform: translateY(6px);
     transition: opacity 0.25s ease-out, transform 0.25s ease-out;
 }
 
-.reveal.is-visible {
+.js .reveal {
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+.js .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
 }
@@ -842,4 +845,3 @@ body {
         grid-template-columns: minmax(0, 1fr);
     }
 }
-
