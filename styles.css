@@ -766,46 +766,60 @@ body {
         display: flex;
     }
 
-    /* El header es contenedor del menú */
-    .header-inner {
-        padding: 0.6rem 0;
-        position: relative;
+    .main-header {
+        position: sticky;
+        top: 0;
+        z-index: 60;
     }
 
-    /* Menú mobile: dropdown debajo del encabezado */
+    .header-inner {
+        padding: 0.6rem 0;
+        position: relative; /* el menú se posiciona respecto a la pantalla, pero dejamos esto prolijo */
+    }
+
+    /* MENÚ MOBILE: PANEL COMPLETO, DEBAJO DEL HEADER, IZQUIERDA → DERECHA */
     .main-nav {
-        position: absolute;
-        top: 100%;
+        position: fixed;                   /* relativo a la pantalla */
+        top: 56px;                         /* altura aproximada del header en mobile */
         left: 0;
-        right: 0;
-        width: 100%;
+        width: 100vw;                      /* ocupa todo el ancho de la pantalla */
+        max-width: 100vw;
+        height: calc(100vh - 56px);        /* ocupa todo el alto restante */
         background: var(--bg-light);
         border-bottom: 1px solid var(--border-soft);
-        box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
-        transform: translateY(-120%);
-        transition: transform 0.25s ease;
-        z-index: 40;
+        box-shadow: 18px 0 40px rgba(15, 23, 42, 0.25);
+        transform: translateX(-100%);      /* ESCONDIDO a la IZQUIERDA */
+        transition: transform 0.25s ease;  /* panel entra desde la izquierda */
+        z-index: 55;
+        overflow-y: auto;
     }
 
     .main-nav.open {
-        transform: translateY(0);
+        transform: translateX(0);          /* ENTRA de IZQUIERDA → DERECHA */
+    }
+
+    /* Al cerrar, el JS agrega .closing: empujamos letras hacia la derecha */
+    .main-nav.closing ul li {
+        opacity: 0;
+        transform: translateX(20px);
+        transition: transform 0.25s ease, opacity 0.25s ease;
     }
 
     .main-nav ul {
         flex-direction: column;
         align-items: flex-start;
-        padding: 0.9rem 1.2rem 1.2rem;
+        padding: 1rem 1.4rem 1.4rem;
         gap: 0.9rem;
     }
 
-    /* Estado base: letras fuera a la izquierda */
+    /* Estado base: letras listas para animarse desde la izquierda */
     .main-nav ul li {
         width: 100%;
         opacity: 0;
         transform: translateX(-20px);
     }
 
-    /* Al abrir: izquierda → derecha */
+    /* Al abrir: izquierda → derecha con delays */
     .main-nav.open ul li {
         opacity: 1;
         transform: translateX(0);
@@ -818,65 +832,22 @@ body {
     .main-nav.open ul li:nth-child(4) { transition-delay: 0.18s; }
     .main-nav.open ul li:nth-child(5) { transition-delay: 0.23s; }
 
-    /* Al cerrar: derecha → izquierda */
-    .main-nav.closing ul li {
-        opacity: 0;
-        transform: translateX(20px);
-        transition: transform 0.25s ease, opacity 0.25s ease;
-    }
-
     .main-nav ul li a {
         width: 100%;
         display: inline-block;
         font-size: 0.95rem;
     }
 
+    /* Ajustes de layout en mobile */
     .hero-alt {
         padding-top: 2.4rem;
+    }
+
+    .hero-alt-grid {
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .strip-grid {
         grid-template-columns: minmax(0, 1fr);
     }
 }
-
-/* OVERRIDE FINAL: menú mobile pantalla completa
-   deslizándose de IZQUIERDA → DERECHA, debajo del encabezado */
-@media (max-width: 720px) {
-
-    .main-header {
-        position: sticky;
-        top: 0;
-        z-index: 60;
-    }
-
-    .header-inner {
-        position: relative;
-    }
-
-    .main-nav {
-        position: fixed;                   /* relativo a la pantalla */
-        top: 56px;                         /* alto aproximado del header en móvil */
-        left: 0;
-        width: 100vw;                      /* ocupa todo el ancho */
-        max-width: 100vw;
-        height: calc(100vh - 56px);        /* todo el alto restante */
-        background: var(--bg-light);
-        border-right: none;
-        border-bottom: 1px solid var(--border-soft);
-        box-shadow: 18px 0 40px rgba(15, 23, 42, 0.25);
-        transform: translateX(-100%);      /* escondido a la IZQUIERDA */
-        transition: transform 0.25s ease;  /* panel desliza izquierda → derecha */
-        z-index: 55;
-        overflow-y: auto;
-    }
-
-    .main-nav.open {
-        transform: translateX(0);          /* entra desde la izquierda */
-    }
-
-    /* El resto (ul, li, animación de letras) YA lo tenés definido.
-       Esto solo cambia el movimiento del panel completo. */
-}
-
-
