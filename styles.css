@@ -890,3 +890,10 @@ body {
         transform: translateX(0);  /* entra desde la izquierda */
     }
 }
+
+/* Cuando el menú mobile está abierto, bloqueamos el scroll de la página */
+html.no-scroll,
+body.no-scroll {
+    overflow: hidden;
+    height: 100%;
+}

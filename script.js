@@ -6,18 +6,23 @@ let navIsOpen = false;
 
 function openNav() {
     if (!mainNav) return;
+
     mainNav.classList.remove('closing');
     mainNav.classList.add('open');
+
+    // 🔒 Bloqueamos el scroll de la página
+    document.documentElement.classList.add('no-scroll');
+    document.body.classList.add('no-scroll');
+
     navIsOpen = true;
 }
 
 function closeNav() {
     if (!mainNav || !navIsOpen) return;
 
-    // Animamos letras de derecha → izquierda
+    // Animación de letras derecha → izquierda
     mainNav.classList.add('closing');
 
-    // Un poquito después, deslizamos el panel hacia arriba
     setTimeout(() => {
         mainNav.classList.remove('open');
     }, 220);
@@ -26,8 +31,13 @@ function closeNav() {
         mainNav.classList.remove('closing');
     }, 450);
 
+    // 🔓 Volvemos a permitir scroll
+    document.documentElement.classList.remove('no-scroll');
+    document.body.classList.remove('no-scroll');
+
     navIsOpen = false;
 }
+
 
 if (navToggle && mainNav) {
     navToggle.addEventListener('click', () => {
