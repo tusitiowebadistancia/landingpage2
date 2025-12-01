@@ -1,45 +1,77 @@
-// Navegación móvil
+// Menú móvil con animación de apertura/cierre
 const navToggle = document.getElementById('nav-toggle');
-const nav = document.getElementById('nav');
+const mainNav = document.getElementById('main-nav');
 
-if (navToggle && nav) {
+let navIsOpen = false;
+
+function openNav() {
+    if (!mainNav) return;
+    mainNav.classList.remove('closing');
+    mainNav.classList.add('open');
+    navIsOpen = true;
+}
+
+function closeNav() {
+    if (!mainNav || !navIsOpen) return;
+
+    // Primero animamos letras de derecha → izquierda
+    mainNav.classList.add('closing');
+
+    // Después de un pequeño tiempo, hacemos que el panel se deslice hacia la izquierda
+    setTimeout(() => {
+        mainNav.classList.remove('open');
+    }, 220); // debe matchear con el tiempo de transición de las letras
+
+    // Quitamos la clase closing al final de la animación
+    setTimeout(() => {
+        mainNav.classList.remove('closing');
+    }, 450);
+
+    navIsOpen = false;
+}
+
+if (navToggle && mainNav) {
     navToggle.addEventListener('click', () => {
-        nav.classList.toggle('open');
+        if (!navIsOpen) {
+            openNav();
+        } else {
+            closeNav();
+        }
     });
 
-    // Cerrar menú al hacer click en un enlace
-    nav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => nav.classList.remove('open'));
+    // Cerrar menú al hacer click en cualquier link
+    mainNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            closeNav();
+        });
     });
 }
 
-// Año dinámico en el footer
+// Año dinámico
 const yearSpan = document.getElementById('year');
 if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
 }
 
-// URL de WhatsApp (podés cambiar el número acá una sola vez)
+// URL de WhatsApp (cambiás el número acá una sola vez)
 const WHATSAPP_URL = "https://wa.me/5491141999497?text=Hola,%20quiero%20hacer%20una%20consulta%20legal";
 
-const heroWhatsapp = document.getElementById('hero-whatsapp');
-const contactWhatsapp = document.getElementById('contact-whatsapp');
+const btnWhatsappHero = document.getElementById('btn-whatsapp-hero');
+const btnWhatsappSide = document.getElementById('btn-whatsapp-side');
 
-if (heroWhatsapp) {
-    heroWhatsapp.addEventListener('click', (e) => {
-        e.preventDefault();
+if (btnWhatsappHero) {
+    btnWhatsappHero.addEventListener('click', () => {
         window.open(WHATSAPP_URL, '_blank');
     });
 }
 
-if (contactWhatsapp) {
-    contactWhatsapp.addEventListener('click', (e) => {
-        e.preventDefault();
+if (btnWhatsappSide) {
+    btnWhatsappSide.addEventListener('click', () => {
         window.open(WHATSAPP_URL, '_blank');
     });
 }
 
-// Animación simple de aparición al hacer scroll
+// Animación reveal en secciones
 const observer = new IntersectionObserver(
     (entries) => {
         entries.forEach(entry => {
@@ -54,18 +86,18 @@ const observer = new IntersectionObserver(
     }
 );
 
-// Aplica .reveal a secciones
-document.querySelectorAll('.section, .hero').forEach(el => {
+document.querySelectorAll('.section, .hero-alt, .strip-images').forEach(el => {
     el.classList.add('reveal');
     observer.observe(el);
 });
 
-// Previene envío real del formulario (demo)
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+// Manejo simple del formulario (demo)
+const formConsulta = document.getElementById('form-consulta');
+
+if (formConsulta) {
+    formConsulta.addEventListener('submit', (e) => {
         e.preventDefault();
         alert('Tu consulta fue enviada. Nos pondremos en contacto a la brevedad.');
-        contactForm.reset();
+        formConsulta.reset();
     });
 }
