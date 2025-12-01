@@ -873,8 +873,8 @@ body {
         left: 0;
         width: 100vw;
         max-width: 100vw;
-        height: calc(100vh - 146px); /* ocupa todo el alto menos los encabezados */
-        top: 146px !important;       /* ↓↓↓
+        height: calc(100vh - 148px); /* ocupa todo el alto menos los encabezados */
+        top: 148px !important;       /* ↓↓↓
                                         si aún te tapa un poquito el header,
                                         subí este número (ej: 124, 128);
                                         si queda separado, bajalo (ej: 112) */
